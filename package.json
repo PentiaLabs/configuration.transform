@@ -19,7 +19,7 @@
     "Pentia <dev@pentia.dk> (http://www.pentia.dk)"
   ],
   "scripts": {
-    "gulp": "./node_modules/.bin/gulp",
+    "gulp": "./node_modules/.bin/gulp"
   },
   "bin": {
     "configuration-transformer": "./bin/configuration-transformer.js"
