@@ -1,11 +1,14 @@
 {
   "name": "configuration-transformer",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": false,
-  "description": "Pentia configuration transformer",
+  "description": "xdt configuration transformer",
   "keywords": [
     "sitecore",
-    "gulp"
+    "gulp",
+    "xdt",
+    "configuration",
+    "transform"
   ],
   "repository": {
     "type": "git",
