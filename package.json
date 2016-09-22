@@ -1,6 +1,6 @@
 {
   "name": "configuration-transformer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "xdt configuration transformer",
   "keywords": [
@@ -8,7 +8,8 @@
     "gulp",
     "xdt",
     "configuration",
-    "transform"
+    "transform",
+    "pentia"
   ],
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
     "gulp": "./node_modules/.bin/gulp"
   },
   "bin": {
-    "pentia-builder": "./bin/pentia-builder.js"
+    "pentia-builder": "./bin/configuration-transformer.js"
   },
   "dependencies": {
     "gulp": "^3.9.0",
