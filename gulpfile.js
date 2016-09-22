@@ -5,16 +5,10 @@ var gulp = require("gulp");
 var nopt = require("nopt");
 var path = require("path");
 var requireDir = require("require-dir");
-var runSequence = require("run-sequence");
 var build = require("./build.js");
-var fs = require('fs');
 var config = build.config;
 var foreach = require("gulp-foreach");
 var msbuild = require("gulp-msbuild");
-var debug = require("gulp-debug");
-
-var tasks = path.join(__dirname, "gulp-tasks");
-var tasks = requireDir(tasks);
 
 var args = nopt({
   "env"     : [String, null]

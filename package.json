@@ -13,41 +13,33 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.git@github.com:PentiaLabs/Pentia.Builder.git"
+    "url": "git@github.com:PentiaLabs/configuration.transform.git"
   },
   "maintainers": [
     "Pentia <dev@pentia.dk> (http://www.pentia.dk)"
   ],
   "scripts": {
-    "gulp": "./node_modules/.bin/gulp"
+    "gulp": "./node_modules/.bin/gulp",
+    "install": "node ./copy-config.js"
   },
   "bin": {
     "pentia-builder": "./bin/configuration-transformer.js"
   },
   "dependencies": {
     "gulp": "^3.9.0",
-    "gulp-debug": "^2.1.2",
-    "gulp-notify": "^2.2.0",
     "gulp-util": "^3.0.7",
-    "lodash": "^4.1.0",
     "nopt": "^3.0.6",
-    "run-sequence": "^1.1.5",
     "shelljs": "^0.5.3",
-    "rimraf": "^2.4.3",
     "require-dir": "^0.3.0",
     "gulp-foreach": "^0.1.0",
     "gulp-msbuild": "0.2.13",
-    "gulp-watch": "^4.3.5",
-    "gulp-rename": "^1.2.2",
-    "gulp-newer": "^1.0.0",
-    "minimist": "^1.2.0",
-    "gulp-rimraf": "^0.2.0"
+    "minimist": "^1.2.0"
   },
   "bugs": {
-    "url": "https://github.com/PentiaLabs/Pentia.Builder/issues"
+    "url": "https://github.com/PentiaLabs/configuration.transform/issues"
   },
-  "homepage": "https://github.com/PentiaLabs/Pentia.Builder#readme",
-  "main": "build.js",
+  "homepage": "https://github.com/PentiaLabs/configuration.transform#readme",
+  "main": "gulpfile.js",
   "author": "Emil Klein <eok@pentia.dk>",
   "license": "ISC"
 }
