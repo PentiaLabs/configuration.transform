@@ -20,10 +20,9 @@
   ],
   "scripts": {
     "gulp": "./node_modules/.bin/gulp",
-    "install": "node ./copy-config.js"
   },
   "bin": {
-    "pentia-builder": "./bin/configuration-transformer.js"
+    "configuration-transformer": "./bin/configuration-transformer.js"
   },
   "dependencies": {
     "gulp": "^3.9.0",
