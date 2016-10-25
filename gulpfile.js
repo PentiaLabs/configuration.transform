@@ -32,14 +32,16 @@ gulp.task("apply-xml-transform", function () {
     .pipe(foreach(function (stream, file) {
       if(file.path.indexOf("web."+build.config.name+".config") == -1 && file.path.indexOf("web."+build.AlwaysApplyName+".config") == -1)
       {
-        if (file.path.indexOf(build.config.name) != -1)
-	{
-	  var fileToTransform = file.path.slice(file.path.indexOf("App_Config")).replace("."+build.config.name,"");
-	}
-	else
-	{
-	  var fileToTransform = file.path.slice(file.path.indexOf("App_Config")).replace("."+build.AlwaysApplyName,"");
-	}
+          var fileToTransform = file.path.slice(file.path.indexOf("App_Config"))
+          
+          if (file.path.indexOf(build.config.name) != -1)
+          {
+            var fileToTransform = fileToTransform.replace("."+build.config.name,"");
+          }
+          else
+          {
+            var fileToTransform = fileToTransform.replace("."+build.AlwaysApplyName,"");
+          }
       }
       else
       {
