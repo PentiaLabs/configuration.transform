@@ -40,7 +40,7 @@ gulp.task("apply-xml-transform", function () {
       }
 
       console.log("Applying configuration transform: " + file.path);
-      console.log("To desitionation file:            " + build.config.websiteRoot + "\\" + fileToTransform)
+      console.log("To destination file:            " + build.config.websiteRoot + "\\" + fileToTransform)
       return gulp.src("./node_modules/@pentia/configuration-transformer/applytransform.targets")
         .pipe(msbuild({
           targets: ["ApplyTransform"],
