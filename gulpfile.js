@@ -24,9 +24,9 @@ gulp.task("apply-xml-transform", function () {
   "./src/Foundation/**/*."+build.config.name+".config", 
   "./src/Feature/**/*."+build.config.name+".config", 
   "./src/Context/**/*."+build.config.name+".config", 
-  "!./src/**/obj/**/*.transform", 
-  "!./src/**/bin/**/*.transform",
-  "!./src/**/output/**/*.transform"];
+  "!./src/**/obj/**/*.config", 
+  "!./src/**/bin/**/*.config",
+  "!./src/**/output/**/*.config"];
 
   return gulp.src(layerPathFilters)
     .pipe(foreach(function (stream, file) {
