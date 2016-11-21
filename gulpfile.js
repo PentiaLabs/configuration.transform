@@ -18,12 +18,12 @@ build.setEnvironment(args.env);
 
 gulp.task("apply-xml-transform", function () {
   var layerPathFilters = [
-  "./src/Foundation/**/*"+build.AlwaysApplyName+".config",
-  "./src/Feature/**/*"+build.AlwaysApplyName+".config",
-  "./src/Context/**/*"+build.AlwaysApplyName+".config",
-  "./src/Foundation/**/*"+build.config.name+".config", 
-  "./src/Feature/**/*"+build.config.name+".config", 
-  "./src/Context/**/*"+build.config.name+".config", 
+  "./src/Foundation/**/*."+build.AlwaysApplyName+".config",
+  "./src/Feature/**/*."+build.AlwaysApplyName+".config",
+  "./src/Context/**/*."+build.AlwaysApplyName+".config",
+  "./src/Foundation/**/*."+build.config.name+".config", 
+  "./src/Feature/**/*."+build.config.name+".config", 
+  "./src/Context/**/*."+build.config.name+".config", 
   "!./src/**/obj/**/*.transform", 
   "!./src/**/bin/**/*.transform",
   "!./src/**/output/**/*.transform"];
