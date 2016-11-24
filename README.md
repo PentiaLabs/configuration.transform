@@ -22,30 +22,30 @@ gulp apply-xml-transform
 gulp apply-xml-transform --env debug
 ```
 source file:
-$solutionPath\src\project\website\web.debug.config
+*$solutionPath\src\project\website\web.debug.config*
 
 destination file:
-$websiteRoot\web.config
+ *$websiteRoot\web.config* 
 
 #### sitecore file
 ```shell
 gulp apply-xml-transform
 ```
-source file:
-$solutionPath\src\project\website\App_Config\include\Sitecore.Analytics.Reporting.debug.config
+source file: 
+*$solutionPath\src\project\website\App_Config\include\Sitecore.Analytics.Reporting.debug.config*
 
 destination file:
-$websiteRoot\App_Config\include\Sitecore.Analytics.Reporting.config
+*$websiteRoot\App_Config\include\Sitecore.Analytics.Reporting.config*
 
 #### connection strings
 ```shell
 gulp apply-xml-transform
 ```
 source file:
-$solutionPath\src\project\website\App_Config\Connectionstrings.debug.config
+*$solutionPath\src\project\website\App_Config\Connectionstrings.debug.config*
 
 destination file:
-$websiteRoot\App_Config\Connectionstrings.config
+*$websiteRoot\App_Config\Connectionstrings.config*
 
 **Note:** 
 The underlying mechanism for transforming files is the Microsoft configuration transformation : https://msdn.microsoft.com/en-us/library/dd465326(v=vs.110).aspx
