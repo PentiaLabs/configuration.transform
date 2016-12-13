@@ -21,9 +21,11 @@ gulp.task("apply-xml-transform", function () {
   "./src/Foundation/**/*."+build.AlwaysApplyName+".config",
   "./src/Feature/**/*."+build.AlwaysApplyName+".config",
   "./src/Context/**/*."+build.AlwaysApplyName+".config",
+  "./src/Project/**/*."+build.AlwaysApplyName+".config",
   "./src/Foundation/**/*."+build.config.name+".config", 
   "./src/Feature/**/*."+build.config.name+".config", 
   "./src/Context/**/*."+build.config.name+".config", 
+  "./src/Project/**/*."+build.config.name+".config", 
   "!./src/**/obj/**/*.config", 
   "!./src/**/bin/**/*.config",
   "!./src/**/output/**/*.config"];
