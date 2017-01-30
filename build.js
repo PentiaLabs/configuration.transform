@@ -10,8 +10,8 @@ function Build() {
   this.cwd = cwd;
   this.env = "debug";
   this.solutionConfiguration = this.readConfigurationFile();
-  this.frontendBuilder = this.solutionConfiguration.frontendBuilder;
-  this.AlwaysApplyName = this.solutionConfiguration.configurationTransform.AlwaysApplyName;
+  this.frontendBuilder = this.solutionConfiguration.frontendBuilder.toLowerCase();
+  this.AlwaysApplyName = this.solutionConfiguration.configurationTransform.AlwaysApplyName.toLowerCase();
   this.setActiveConfiguration();
 }
 
@@ -19,6 +19,7 @@ Build.prototype.setActiveConfiguration = function () {
   for(var i = 0; i < this.solutionConfiguration.configs.length; i++) {
     if (this.solutionConfiguration.configs[i].name == this.env) {
         this.config = this.solutionConfiguration.configs[i];
+        this.config.name = this.config.name.toLowerCase();
         return;
     }
   }

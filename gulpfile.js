@@ -32,11 +32,12 @@ gulp.task("apply-xml-transform", function () {
 
   return gulp.src(layerPathFilters)
     .pipe(foreach(function (stream, file) {
-      if(file.path.indexOf("web."+build.config.name+".config") == -1 && file.path.indexOf("web."+build.AlwaysApplyName+".config") == -1)
+      var filePath = file.path.toLowerCase();
+      if(filePath.indexOf("web."+build.config.name+".config") == -1 && filePath.indexOf("web."+build.AlwaysApplyName+".config") == -1)
       {
-          var fileToTransform = file.path.slice(file.path.indexOf("App_Config"))
+          var fileToTransform = filePath.slice(filePath.indexOf("app_config"))
           
-          if (file.path.indexOf(build.config.name) != -1)
+          if (filePath.indexOf(build.config.name) != -1)
           {
             var fileToTransform = fileToTransform.replace("."+build.config.name,"");
           }
@@ -56,7 +57,7 @@ gulp.task("apply-xml-transform", function () {
         dest = path.join(process.cwd(),dest);
       }
 
-      console.log("Applying configuration transform: " + file.path);
+      console.log("Applying configuration transform: " + filePath);
       console.log("To destination file:            " + dest + "\\" + fileToTransform)
       return gulp.src("./node_modules/@pentia/configuration-transformer/applytransform.targets")
         .pipe(msbuild({
@@ -70,7 +71,7 @@ gulp.task("apply-xml-transform", function () {
           toolsVersion: build.solutionConfiguration.msbuild.toolsversion,
           properties: {
             WebConfigToTransform: dest,
-            TransformFile: file.path,
+            TransformFile: filePath,
             FileToTransform: fileToTransform
           }
         }));
