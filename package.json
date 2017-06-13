@@ -1,6 +1,6 @@
 {
   "name": "@pentia/configuration-transformer",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": false,
   "description": "xdt configuration transformer",
   "keywords": [
