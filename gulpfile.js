@@ -40,23 +40,24 @@ gulp.task("apply-xml-transform", function () {
 
   return gulp.src(layerPathFilters)
     .pipe(foreach(function (stream, file) {
-      var filePath = file.path.toLowerCase();
+	  var filePathOriginal = file.path;
+      var filePath = filePathOriginal.toLowerCase();
       if(filePath.indexOf("web."+build.config.name.toLowerCase()+".config") == -1 && filePath.indexOf("web."+build.AlwaysApplyName.toLowerCase()+".config") == -1)
       {
           var fileToTransform = filePath.slice(filePath.indexOf("app_config"))
           
-          if (filePath.indexOf(build.config.name) != -1)
+          if (filePath.indexOf(build.config.name.toLowerCase()) != -1)
           {
-            var fileToTransform = fileToTransform.replace("."+build.config.name.toLowerCase(),"");
+			  var fileToTransform = fileToTransform.replace("."+build.config.name.toLowerCase(),"");
           }
           else
-          {
-            var fileToTransform = fileToTransform.replace("."+build.AlwaysApplyName.toLowerCase(),"");
+          { 
+			   var fileToTransform = fileToTransform.replace("."+build.AlwaysApplyName.toLowerCase(),"");
           }
       }
       else
       {
-        var fileToTransform = "web.config";
+        var fileToTransform = "web.config"; 
       }
 
       var dest = build.config.websiteRoot;
@@ -65,7 +66,7 @@ gulp.task("apply-xml-transform", function () {
         dest = path.join(process.cwd(),dest);
       }
 
-      console.log("Applying configuration transform: " + filePath);
+      console.log("Applying configuration transform: " + filePathOriginal);
       console.log("To destination file:            " + dest + "\\" + fileToTransform)
       return gulp.src("./node_modules/@pentia/configuration-transformer/applytransform.targets")
         .pipe(msbuild({
@@ -79,7 +80,7 @@ gulp.task("apply-xml-transform", function () {
           toolsVersion: build.solutionConfiguration.msbuild.toolsversion,
           properties: {
             WebConfigToTransform: dest,
-            TransformFile: filePath,
+            TransformFile: filePathOriginal,
             FileToTransform: fileToTransform
           }
         }));
@@ -89,4 +90,3 @@ gulp.task("apply-xml-transform", function () {
 gulp.task("default", function () {
 	console.log("You need to specifiy a task.");
 });
-
