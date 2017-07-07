@@ -11,59 +11,63 @@ var foreach = require("gulp-foreach");
 var msbuild = require("gulp-msbuild");
 
 var args = nopt({
-  "env"     : [String, null]
+  "env": [String, null]
 });
 
 build.setEnvironment(args.env);
 
 gulp.task("apply-xml-transform", function () {
   var layerPathFilters = [
-  "./src/Foundation/**/*."+build.AlwaysApplyName+".config",
-  "./src/Feature/**/*."+build.AlwaysApplyName+".config",
-  "./src/Context/**/*."+build.AlwaysApplyName+".config",
-  "./src/Project/**/*."+build.AlwaysApplyName+".config",
-  "./src/Foundation/**/*."+build.AlwaysApplyName.toLowerCase()+".config",
-  "./src/Feature/**/*."+build.AlwaysApplyName.toLowerCase()+".config",
-  "./src/Context/**/*."+build.AlwaysApplyName.toLowerCase()+".config",
-  "./src/Project/**/*."+build.AlwaysApplyName.toLowerCase()+".config",
-  "./src/Foundation/**/*."+build.config.name+".config", 
-  "./src/Feature/**/*."+build.config.name+".config", 
-  "./src/Context/**/*."+build.config.name+".config", 
-  "./src/Project/**/*."+build.config.name+".config", 
-  "./src/Foundation/**/*."+build.config.name.toLowerCase()+".config", 
-  "./src/Feature/**/*."+build.config.name.toLowerCase()+".config", 
-  "./src/Context/**/*."+build.config.name.toLowerCase()+".config", 
-  "./src/Project/**/*."+build.config.name.toLowerCase()+".config", 
-  "!./src/**/obj/**/*.config", 
-  "!./src/**/bin/**/*.config",
-  "!./src/**/output/**/*.config"];
+    "./src/Foundation/**/*." + build.AlwaysApplyName + ".config",
+    "./src/Feature/**/*." + build.AlwaysApplyName + ".config",
+    "./src/Context/**/*." + build.AlwaysApplyName + ".config",
+    "./src/Project/**/*." + build.AlwaysApplyName + ".config",
+    "./src/Foundation/**/*." + build.AlwaysApplyName.toLowerCase() + ".config",
+    "./src/Feature/**/*." + build.AlwaysApplyName.toLowerCase() + ".config",
+    "./src/Context/**/*." + build.AlwaysApplyName.toLowerCase() + ".config",
+    "./src/Project/**/*." + build.AlwaysApplyName.toLowerCase() + ".config",
+    "./src/Foundation/**/*." + build.config.name + ".config",
+    "./src/Feature/**/*." + build.config.name + ".config",
+    "./src/Context/**/*." + build.config.name + ".config",
+    "./src/Project/**/*." + build.config.name + ".config",
+    "./src/Foundation/**/*." + build.config.name.toLowerCase() + ".config",
+    "./src/Feature/**/*." + build.config.name.toLowerCase() + ".config",
+    "./src/Context/**/*." + build.config.name.toLowerCase() + ".config",
+    "./src/Project/**/*." + build.config.name.toLowerCase() + ".config",
+    "!./src/**/obj/**/*.config",
+    "!./src/**/bin/**/*.config",
+    "!./src/**/output/**/*.config"];
 
   return gulp.src(layerPathFilters)
     .pipe(foreach(function (stream, file) {
-	  var filePathOriginal = file.path;
+      var filePathOriginal = file.path;
       var filePath = filePathOriginal.toLowerCase();
-      if(filePath.indexOf("web."+build.config.name.toLowerCase()+".config") == -1 && filePath.indexOf("web."+build.AlwaysApplyName.toLowerCase()+".config") == -1)
-      {
-          var fileToTransform = filePath.slice(filePath.indexOf("app_config"))
-          
-          if (filePath.indexOf(build.config.name.toLowerCase()) != -1)
-          {
-			  var fileToTransform = fileToTransform.replace("."+build.config.name.toLowerCase(),"");
-          }
-          else
-          { 
-			   var fileToTransform = fileToTransform.replace("."+build.AlwaysApplyName.toLowerCase(),"");
-          }
+      if (filePath.indexOf("web." + build.config.name.toLowerCase() + ".config") == -1 && filePath.indexOf("web." + build.AlwaysApplyName.toLowerCase() + ".config") == -1) {
+        
+        var isapp_config = filePath.indexOf("app_config") > 0;
+        if (isapp_config) {
+          var fileToTransform = filePath.slice(filePath.indexOf("app_config"));
+        }
+
+        var issecurityProvider = filePath.indexOf("securityprovider") > 0;
+        if (issecurityProvider) {
+          var fileToTransform = filePath.slice(filePath.indexOf("securityprovider"));
+        }
+
+        if (filePath.indexOf(build.config.name.toLowerCase()) != -1) {
+          var fileToTransform = fileToTransform.replace("." + build.config.name.toLowerCase(), "");
+        }
+        else {
+          var fileToTransform = fileToTransform.replace("." + build.AlwaysApplyName.toLowerCase(), "");
+        }
       }
-      else
-      {
-        var fileToTransform = "web.config"; 
+      else {
+        var fileToTransform = "web.config";
       }
 
       var dest = build.config.websiteRoot;
-      if(!path.isAbsolute(dest))
-      {
-        dest = path.join(process.cwd(),dest);
+      if (!path.isAbsolute(dest)) {
+        dest = path.join(process.cwd(), dest);
       }
 
       console.log("Applying configuration transform: " + filePathOriginal);
@@ -88,5 +92,5 @@ gulp.task("apply-xml-transform", function () {
 });
 
 gulp.task("default", function () {
-	console.log("You need to specifiy a task.");
+  console.log("You need to specifiy a task.");
 });
